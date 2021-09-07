@@ -2,6 +2,7 @@ package ru.alexeymarino.spring.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.alexeymarino.spring.rest.entity.Employee;
@@ -20,5 +21,10 @@ public class MyController {
     public List<Employee> showAllEmployees() {
         List<Employee> employees = employeeService.getAllEmployees();
         return employees;
-     }
+    }
+
+    @GetMapping("/employees/{id}")
+    public Employee getEmployee(@PathVariable int id) {
+        return employeeService.getEmployee(id);
+    }
 }
