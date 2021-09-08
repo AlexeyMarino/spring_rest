@@ -46,4 +46,16 @@ public class MyController {
 
         return employee;
     }
+
+    @DeleteMapping("/employees/{id}")
+    public String deleteEmployee(@PathVariable int id) {
+        Employee employee = employeeService.getEmployee(id);
+
+        if(employee == null) {
+            throw new NoSuchEmployeeException("Работника с ID = " + id + " в базеданных не найдено.");
+        }
+
+        employeeService.deleteEmployee(id);
+        return "Employee with ID = " + id + " was deleted";
+    }
 }
